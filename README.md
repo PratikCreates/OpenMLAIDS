@@ -1,275 +1,188 @@
-# OpenMLAIDS - Open Machine Learning AI Data Science Assistant
+# OpenMLAIDS
+
+**ML + DS + AI = MLAIDS** - A conversational AI agent that democratizes data science through natural language interactions.
 
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/downloads/release/python-3110/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![OpenAI](https://img.shields.io/badge/Azure%20OpenAI-API-orange.svg)](https://azure.microsoft.com/en-us/services/cognitive-services/openai-service/)
 
-**OpenMLAIDS** (Open Machine Learning AI Data Science Assistant) is an interactive CLI chatbot that helps non-technical professionals generate business insights without handling the complexity of machine learning or data science. It manages data cleaning, model training, code execution, and report generation end to end. With Oumi integration, OpenMLAIDS also supports reinforcement learning and model fine-tuning directly through the CLI.
+## What is OpenMLAIDS?
 
-> 🏆 **AI Agents Assemble Hackathon**: Built for the global "AI Agents Assemble" hackathon - a worldwide showdown where builders unite to create the next generation of intelligent agents. This project showcases how we assembled our skills, tools, and AI agents to democratize data science.
+OpenMLAIDS transforms complex data science workflows into simple conversations. Users describe their analytical needs in plain English, and the system autonomously handles data acquisition, preprocessing, modeling, and insight generation.
 
-## 🎯 Key Features
+**Built for the AI Agents Assemble hackathon** - showcasing next-generation intelligent agent orchestration.
 
-- **No-Code Data Science**: Automate the entire ML pipeline from data preprocessing to model deployment
-- **Business-Focused Insights**: Translates complex data science results into actionable business recommendations
-- **Interactive CLI Interface**: Easy-to-use text-based interface for natural conversation
-- **Self-Evolving AI**: Continuously improves performance through reinforcement learning and fine-tuning
-- **Multi-Model Support**: Seamlessly switches between different AI models based on task complexity
-- **Automated Reporting**: Generates professional reports with visualizations and insights
-- **Kaggle Dataset Integration**: Seamlessly access and analyze thousands of public datasets
-- **AI-Powered Development**: Built using Cline extension with intelligent subagent assistance
+## Core Capabilities
 
-## 🚀 Quick Start
+**Autonomous Data Science Pipeline:**
+- Natural language query processing
+- Automated dataset acquisition (Kaggle integration)
+- Intelligent preprocessing and feature engineering
+- Model selection and hyperparameter optimization
+- Automated visualization and reporting
 
-### Prerequisites
+**Self-Evolving Intelligence:**
+- Oumi-powered LLM-as-a-Judge evaluation system
+- Reinforcement learning from user interactions
+- Continuous model fine-tuning and improvement
+- Performance tracking and optimization
 
-- Python 3.11+
-- Azure OpenAI API access
-- Git (for cloning the repository)
+**Enterprise-Grade Safety:**
+- Tool execution approval system
+- Sandboxed code execution environment
+- Multi-judge validation framework
+- Audit trail and performance monitoring
 
-### Installation
+## Quick Start
 
-1. Clone the repository:
 ```bash
 git clone https://github.com/PratikCreates/OpenMLAIDS.git
 cd OpenMLAIDS
-```
-
-2. Create a virtual environment:
-```bash
 python -m venv openmlaids_env
-source openmlaids_env/bin/activate  # On Windows: openmlaids_env\Scripts\activate
-```
-
-3. Install dependencies:
-```bash
+source openmlaids_env/bin/activate  # Windows: openmlaids_env\Scripts\activate
 pip install -r requirements.txt
 ```
 
-4. Configure environment variables:
-Create a `.env` file in the project root with your credentials:
+**Environment Configuration:**
 ```env
-# Azure OpenAI Configuration
 AZURE_OPENAI_API_KEY=your_api_key_here
 AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
 AZURE_OPENAI_DEPLOYMENT_NAME="gpt-5.2-chat"
 AZURE_OPENAI_API_VERSION="2025-04-01-preview"
-
-# Kaggle Integration (for dataset features)
 KAGGLE_KEY=your_kaggle_key
 KAGGLE_USERNAME=your_kaggle_username
 ```
 
-### Usage
-
-Run the application:
+**Launch:**
 ```bash
 python app.py
 ```
 
-Once launched, you can interact with OpenMLAIDS through natural language commands like:
-- "Analyze sales data and predict future trends"
-- "What factors influence customer churn?"
-- "Create a report on marketing campaign effectiveness"
-- "Download the latest customer dataset from Kaggle and analyze it"
-- "Fine-tune the model based on recent performance feedback"
+## Demo Video
 
-## 🌟 What Makes OpenMLAIDS Special
+[![Watch Demo](https://img.shields.io/badge/Watch-Demo%20Video-red?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/1KekFZ18dXk6ToBXBZ6CJrGQrORZq04mL/view?usp=sharing)
 
-### For Non-Technical Users
-- **Zero Coding Required**: Simply describe what you want to analyze in plain English
-- **Business-First Approach**: Results are presented as actionable business insights, not technical metrics
-- **End-to-End Automation**: From data ingestion to final reports, everything happens automatically
+## Agent Tool System
 
-### For Technical Users
-- **Extensible Architecture**: Easy to add new tools, models, and capabilities
-- **Self-Improving System**: Uses Oumi's reinforcement learning to get better over time
-- **Advanced Integration**: Seamless connection with Kaggle, Azure OpenAI, and other platforms
+OpenMLAIDS employs 10 specialized tools orchestrated through LangGraph:
 
-### Hackathon Innovation
-- **AI-Assisted Development**: Showcases the power of using Cline extension for rapid prototyping
-- **Modern Tech Stack**: Combines cutting-edge frameworks like LangGraph with practical business applications
-- **Real-World Impact**: Addresses the genuine need for accessible data science tools
+**Data Acquisition & Processing:**
+- `download_kaggle_dataset` - Automated dataset retrieval
+- `inspect_data` - Intelligent data profiling and quality assessment
+- `python_helper` - Sandboxed code execution for analysis
 
-## 🎬 Demo Video
+**Intelligence & Learning:**
+- `self_evaluate_agent` - Multi-judge performance evaluation
+- `generate_training_data` - Learning example creation
+- `evaluate_model_performance` - Benchmarking and validation
+- `evolve_agent` - Triggered self-improvement
 
-[![OpenMLAIDS Demo](https://img.shields.io/badge/Watch-Demo%20Video-red?style=for-the-badge&logo=youtube)](https://drive.google.com/file/d/1KekFZ18dXk6ToBXBZ6CJrGQrORZq04mL/view?usp=sharing)
+**Integration & Output:**
+- `web_search` - Real-time information gathering
+- `generate_report` - Professional documentation
+- `shell_tool` - System-level operations
 
-See OpenMLAIDS in action! The demo showcases real-time data analysis, model training, and business insight generation through natural language interactions.
+**Safety Architecture:**
+- Pre-execution tool approval workflow
+- Multi-judge validation (Agent, Data Science, Problem Solving, Code Quality)
+- Sandboxed execution environment
+- Comprehensive audit logging
 
-## 🏗️ Tech Stack & Architecture
+## Real-World Examples
 
-### Core Technologies
-- **Python 3.11+**: Primary development language
-- **LangChain & LangGraph**: Agent orchestration and conversation flow
-- **Azure OpenAI GPT-5.2**: Advanced language model for natural language processing
-- **Oumi Framework**: LLM-as-a-Judge evaluation and reinforcement learning
-- **Textual**: Modern terminal user interface framework
-- **Pandas & NumPy**: Data manipulation and analysis
-- **Scikit-learn**: Machine learning algorithms and utilities
-- **Matplotlib & Seaborn**: Data visualization and reporting
-
-### Development Tools
-- **Cline Extension**: AI-powered development assistant used throughout the project
-- **Cline Subagents**: Specialized AI agents for different development tasks
-- **Git**: Version control and collaboration
-
-### Architecture Pattern
-- **Agent-Based Design**: Modular agents handle specific tasks (data processing, model training, evaluation)
-- **Event-Driven**: Reactive system responding to user inputs and tool outputs
-- **Self-Improving**: Continuous learning through reinforcement feedback loops
-
-## 🧠 How It Works
-
-OpenMLAIDS combines several advanced technologies to provide a seamless data science experience:
-
-### Core Architecture
-1. **LangGraph Framework**: Manages conversation flow and tool orchestration
-2. **Oumi Integration**: Provides LLM-as-a-Judge evaluation and self-improvement capabilities
-3. **Dynamic Model Selection**: Automatically chooses the optimal model for each task
-4. **Continuous Learning Loop**: Evolves performance through reinforcement learning
-
-### Workflow Process
-1. **Task Analysis**: Determines complexity and requirements of user requests
-2. **Data Processing**: Handles data cleaning, transformation, and feature engineering
-3. **Model Development**: Selects and trains appropriate ML models
-4. **Evaluation & Validation**: Assesses model performance using multiple metrics
-5. **Insight Generation**: Converts results into business-relevant insights
-6. **Report Creation**: Produces professional documentation with visualizations
-
-## 🛠️ Technical Capabilities
-
-### Supported Tasks
-- Predictive modeling and forecasting
-- Customer segmentation and clustering
-- A/B testing analysis
-- Marketing attribution modeling
-- Risk assessment and fraud detection
-- Sales and demand forecasting
-- Text analysis and sentiment mining
-
-### Integration Features
-- **Web Search**: Automatically researches relevant information
-- **Code Execution**: Safely executes Python code for analysis
-- **Data Visualization**: Creates charts and graphs for better understanding
-- **Kaggle Integration**: Seamlessly downloads and works with public datasets from Kaggle
-- **File Operations**: Handles data import/export seamlessly
-
-## 📈 Self-Evolution System
-
-OpenMLAIDS continuously improves through:
-- **Performance Monitoring**: Tracks success rates and quality scores
-- **Reinforcement Learning**: Learns from successful interactions
-- **Model Fine-tuning**: Adapts to domain-specific requirements
-- **Judged Feedback**: Uses LLM-as-a-Judge for quality assessment
-
-## 📊 Example Use Cases
-
-### Business Intelligence
+**Customer Churn Analysis:**
 ```
-User: "Analyze our Q4 sales data and identify growth opportunities"
-OpenMLAIDS: [Processes data, identifies trends, creates visualizations, and provides strategic recommendations]
+User: "Analyze customer churn patterns and predict at-risk accounts"
+
+Tool Calls:
+1. download_kaggle_dataset("customer-churn-dataset")
+2. inspect_data("churn_data.csv")
+3. python_helper("# Feature engineering and model training")
+4. self_evaluate_agent("response", "churn analysis", "data_science")
+5. generate_report("Customer Churn Analysis Report")
+
+Output: Predictive model + risk segmentation + retention strategies
 ```
 
-### Predictive Analytics
+**Sales Forecasting:**
 ```
-User: "Predict which customers are likely to churn next quarter"
-OpenMLAIDS: [Builds churn prediction model, identifies at-risk customers, suggests retention strategies]
+User: "Forecast Q1 sales and identify growth opportunities"
+
+Tool Calls:
+1. inspect_data("sales_historical.csv")
+2. web_search("Q1 2025 market trends retail")
+3. python_helper("# Time series forecasting with external factors")
+4. generate_training_data("forecast query", "model results", "evaluation")
+5. generate_report("Q1 Sales Forecast Report")
+
+Output: Time series model + growth projections + strategic recommendations
 ```
 
-### Market Research
-```
-User: "Research competitors in our industry and summarize key findings"
-OpenMLAIDS: [Searches web, analyzes data, creates competitive landscape report]
-```
+## Technical Architecture
 
-## 📁 Project Structure
+**Core Framework:**
+- **LangGraph** - Agent orchestration and workflow management
+- **Azure OpenAI GPT-5.2** - Natural language understanding and generation
+- **Oumi** - Self-evaluation and continuous improvement
+- **Textual** - Interactive CLI interface
+
+**Self-Evolution Pipeline:**
+- Real-time response evaluation using 4 specialized judges
+- Automated training data generation from successful interactions
+- Fine-tuning pipeline for domain-specific optimization
+- Performance tracking and evolution triggers
+
+**Development Acceleration:**
+- Built with Cline AI assistant for rapid prototyping
+- AI-assisted code generation and optimization
+- Intelligent subagent orchestration
+
+## Project Structure
 
 ```
 OpenMLAIDS/
-├── app.py                 # Main application entry point
-├── agent.py               # Core agent logic and tools
-├── requirements.txt       # Python dependencies
-├── configs/               # Configuration files
-│   ├── azure_config.yaml  # Azure OpenAI settings
-│   └── judge_configs/     # Oumi judge configurations
-├── data/                  # Sample datasets
-│   └── train_and_test2.csv # Example Titanic dataset
-├── src/                   # Core modules
-│   ├── judge_manager.py        # LLM-as-a-Judge system
-│   ├── model_manager.py        # Dynamic model selection
+├── app.py                    # Main CLI application
+├── agent.py                  # Core agent with 10 specialized tools
+├── src/
+│   ├── judge_manager.py      # Oumi-powered evaluation system
 │   ├── fine_tuning_pipeline.py # Self-evolution capabilities
-│   ├── continuous_improvement_loop.py # Learning system
-│   └── performance_tracker.py  # Monitoring and analytics
-└── models/                # Trained models and evolution data
+│   └── performance_tracker.py  # Metrics and monitoring
+├── configs/
+│   ├── azure_config.yaml     # Azure OpenAI configuration
+│   └── judge_configs/        # Multi-judge evaluation setup
+└── data/                     # Dataset storage and training data
 ```
 
-## 🔧 Configuration
+## Innovation Highlights
 
-### Azure OpenAI Setup
-Ensure you have the following environment variables configured:
-- `AZURE_OPENAI_API_KEY`: Your Azure OpenAI API key
-- `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL
-- `AZURE_OPENAI_DEPLOYMENT_NAME`: Your model deployment name (e.g., "gpt-5.2-chat")
-- `AZURE_OPENAI_API_VERSION`: API version (e.g., "2025-04-01-preview")
+**Agent Orchestration:**
+- Dynamic tool selection based on query complexity
+- Multi-step reasoning with intermediate validation
+- Autonomous error recovery and retry mechanisms
 
-### Kaggle Integration Setup
-For dataset features, configure:
-- `KAGGLE_KEY`: Your Kaggle API key
-- `KAGGLE_USERNAME`: Your Kaggle username
+**Self-Improvement:**
+- Oumi LLM-as-a-Judge for quality assessment
+- Reinforcement learning from user feedback
+- Automated fine-tuning based on performance metrics
 
-### Judge Configurations
-The system uses four specialized judges for self-evaluation:
-- **Agent Evaluation Judge**: General performance assessment
-- **Data Science Judge**: Technical accuracy evaluation
-- **Problem Solving Judge**: Solution quality assessment
-- **Code Quality Judge**: Programming standards review
+**User Experience:**
+- Zero-code data science for business users
+- Real-time visualization and insight generation
+- Professional report automation
 
-## 🤝 Contributing
+## License
 
-We welcome contributions to OpenMLAIDS! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to get involved.
+MIT License
 
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a pull request
+## Acknowledgments
 
-## 📄 License
+**AI Agents Assemble Hackathon** - Demonstrating the future of intelligent agent collaboration.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## � ALearning & Growth
-
-This project represents a journey in exploring cutting-edge AI technologies and their practical applications:
-
-### Key Learning Areas
-- **Agent-Based AI Systems**: Understanding how to orchestrate multiple AI agents for complex workflows
-- **LLM Integration**: Practical experience with Azure OpenAI and advanced prompt engineering
-- **Self-Improving Systems**: Implementation of reinforcement learning and continuous improvement loops
-- **User Experience Design**: Creating intuitive CLI interfaces for complex technical processes
-- **Data Science Automation**: Building end-to-end pipelines that require minimal human intervention
-
-### Technical Growth
-- **Advanced Python Development**: Leveraging modern frameworks like LangChain and Textual
-- **AI-Assisted Development**: Extensive use of Cline extension and subagents for accelerated development
-- **System Architecture**: Designing scalable, modular systems for AI applications
-- **Performance Optimization**: Implementing efficient data processing and model management
-
-### Business Impact Understanding
-- **Democratizing AI**: Making advanced analytics accessible to non-technical users
-- **Workflow Automation**: Reducing time-to-insight from days to minutes
-- **Decision Support**: Translating complex data into actionable business recommendations
-
-## 🙏 Acknowledgments
-
-Special thanks to the "AI Agents Assemble" hackathon and the incredible tools that made this project possible:
-
-- **[Cline](https://github.com/cline/cline)** 🤖: Thank you for the amazing AI-powered development assistant that accelerated our development process through intelligent code generation and subagent orchestration
-- **[Oumi](https://github.com/oumi-ai/oumi)** 🌟: Thank you for providing the powerful LLM-as-a-Judge framework and reinforcement learning capabilities that enable OpenMLAIDS to continuously improve and self-evaluate
-- Built with [LangChain](https://github.com/langchain-ai/langchain) and [LangGraph](https://github.com/langchain-ai/langgraph)
-- Powered by [Azure OpenAI](https://azure.microsoft.com/en-us/services/cognitive-services/openai-service/)
-- Inspired by the need to democratize data science and make AI accessible to everyone
+**Key Technologies:**
+- **[Cline](https://github.com/cline/cline)** - AI-powered development acceleration
+- **[Oumi](https://github.com/oumi-ai/oumi)** - Self-evaluation and improvement framework
+- **LangChain/LangGraph** - Agent orchestration platform
+- **Azure OpenAI** - Advanced language model capabilities
 
 ---
-*Making data science accessible to everyone, one conversation at a time.*
+*Democratizing data science through conversational AI*
