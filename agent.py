@@ -140,25 +140,23 @@ def self_evaluate_agent(agent_response: str, context: str, judge_type: str = "ge
         judge_type: Type of judge to use ('general', 'data_science', 'problem_solving', 'code_quality')
     """
     try:
-        # Map judge types to their respective judge configs
-        judge_mapping = {
-            "general": "agent_evaluation_judge.yaml",
-            "data_science": "data_science_judge.yaml", 
-            "problem_solving": "problem_solving_judge.yaml",
-            "code_quality": "code_quality_judge.yaml"
-        }
-        
-        judge_config = judge_mapping.get(judge_type, "agent_evaluation_judge.yaml")
-        
         # Use the Judge Manager to evaluate the response
-        result = judge_manager.evaluate_response(
-            response=agent_response,
-            context=context,
-            judge_config=judge_config
+        results = judge_manager.evaluate_agent_response(
+            user_request=context,
+            agent_response=agent_response,
+            response_type=judge_type
         )
         
+        # Get performance summary
+        summary = judge_manager.get_performance_summary(results)
+        
         return json.dumps({
-            "evaluation": result,
+            "evaluation_results": {name: {
+                "score": result.score,
+                "explanation": result.explanation,
+                "detailed_feedback": result.detailed_feedback
+            } for name, result in results.items()},
+            "performance_summary": summary,
             "judge_type": judge_type,
             "status": "success"
         }, indent=2)
@@ -227,9 +225,7 @@ def evaluate_model_performance(test_cases: str, model_name: str = "Azure-GPT-5.2
         output_dir: Directory to save evaluation results
     """
     try:
-        import sys
-        sys.path.append('.')
-        from oumi_evaluation_with_oumi import run_model_evaluation
+        from src.fine_tuning_pipeline import create_evolution_pipeline
         
         # Parse test cases
         if os.path.exists(test_cases):
@@ -238,11 +234,13 @@ def evaluate_model_performance(test_cases: str, model_name: str = "Azure-GPT-5.2
         else:
             test_data = json.loads(test_cases)
         
-        # Run evaluation using our Oumi integration
-        results = run_model_evaluation(
-            model_name=model_name,
-            test_cases=test_data,
-            output_dir=output_dir
+        # Create evolution pipeline for evaluation
+        pipeline = create_evolution_pipeline()
+        
+        # Run evaluation
+        results = pipeline.evaluate_evolution(
+            model_path=f"models/{model_name}",
+            test_data=test_data
         )
         
         return json.dumps({
@@ -255,7 +253,46 @@ def evaluate_model_performance(test_cases: str, model_name: str = "Azure-GPT-5.2
     except Exception as e:
         return f"Model evaluation failed: {str(e)}"
 
-tools = [shell_tool, download_kaggle_dataset, inspect_data, python_helper, web_search, generate_report, self_evaluate_agent, generate_training_data, evaluate_model_performance]
+# NEW: Agent evolution tool
+@tool
+def evolve_agent(force_evolution: bool = False):
+    """
+    Triggers agent self-evolution using accumulated training data.
+    Uses Oumi's fine-tuning capabilities to improve the agent.
+    
+    Args:
+        force_evolution: Force evolution even if criteria aren't met
+    """
+    try:
+        from src.fine_tuning_pipeline import create_evolution_pipeline
+        
+        pipeline = create_evolution_pipeline()
+        
+        # Check if evolution is recommended
+        if not force_evolution and not pipeline.should_evolve():
+            status = pipeline.get_evolution_status()
+            return json.dumps({
+                "status": "not_ready",
+                "message": "Evolution not recommended yet. Need more high-quality training data.",
+                "evolution_status": status
+            }, indent=2)
+        
+        # Trigger evolution
+        results = pipeline.evolve_agent()
+        
+        return json.dumps({
+            "status": "success",
+            "message": "Agent evolution completed successfully!",
+            "evolution_results": results
+        }, indent=2)
+        
+    except Exception as e:
+        return json.dumps({
+            "status": "error",
+            "error": f"Evolution failed: {str(e)}"
+        })
+
+tools = [shell_tool, download_kaggle_dataset, inspect_data, python_helper, web_search, generate_report, self_evaluate_agent, generate_training_data, evaluate_model_performance, evolve_agent]
 
 # ---------------------------------------------------------
 # AZURE GPT-5.2 CONFIGURATION
