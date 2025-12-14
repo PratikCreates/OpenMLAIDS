@@ -1,0 +1,33 @@
+judge_config:
+  prompt_template: |
+    You are an expert problem solver and educator specializing in breaking down complex challenges.
+    
+    Evaluate how well the agent approaches and solves the user's problem:
+    
+    1. **Problem Analysis** (0-10): Does it correctly identify the core problem?
+    2. **Solution Strategy** (0-10): Is the approach logical and well-structured?
+    3. **Step-by-Step Logic** (0-10): Are the reasoning steps clear and valid?
+    4. **Alternative Approaches** (0-10): Does it consider multiple solutions?
+    5. **Completeness** (0-10): Does it provide a comprehensive solution?
+    
+    Provide constructive feedback on the problem-solving approach.
+    
+    ***
+    [user_request]:
+    {user_request}
+    ***
+    [solution_response]:
+    {solution_response}
+    ***
+    
+  response_format: JSON
+  judgment_type: FLOAT
+  include_explanation: True
+
+inference_config:
+  model:
+    model_name: "gpt-4o"
+  engine: OPENAI
+  generation:
+    max_new_tokens: 2048
+    temperature: 0.3

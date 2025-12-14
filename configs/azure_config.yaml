@@ -1,0 +1,44 @@
+# Azure OpenAI Configuration for OpenMLAIDS + Oumi Integration
+# This configures Azure OpenAI for both the main agent and judge evaluations
+
+azure_openai:
+  # Main Agent Configuration
+  agent_model:
+    deployment_name: "${AZURE_OPENAI_DEPLOYMENT_NAME}"  # Your Azure GPT-5.2 deployment
+    api_version: "${AZURE_OPENAI_API_VERSION}"
+    endpoint: "${AZURE_OPENAI_ENDPOINT}"
+    reasoning_effort: "medium"
+    verbosity: "medium"
+    max_completion_tokens: 4096
+
+  # Judge Evaluation Configuration  
+  judge_models:
+    primary_judge: "gpt-4o"  # For high-quality evaluations
+    fallback_judge: "gpt-3.5-turbo"  # For cost-effective evaluations
+    api_version: "2024-02-01"
+    endpoint: "${AZURE_OPENAI_ENDPOINT}"
+    reasoning_effort: "low"  # Lower cost for judges
+    verbosity: "low"
+    max_completion_tokens: 2048
+
+  # Environment Variables Required
+  required_env_vars:
+    - "AZURE_OPENAI_API_KEY"
+    - "AZURE_OPENAI_ENDPOINT" 
+    - "AZURE_OPENAI_DEPLOYMENT_NAME"
+    - "AZURE_OPENAI_API_VERSION"
+
+# Cost Management
+cost_optimization:
+  use_fallback_judges: true
+  max_judge_calls_per_session: 10
+  batch_judge_evaluations: true
+  cache_judge_results: true
+  
+# Judge Selection Logic
+judge_selection:
+  simple_tasks: "gpt-3.5-turbo"
+  complex_evaluations: "gpt-4o"
+  code_reviews: "gpt-4o"
+  data_science_evaluations: "gpt-4o"
+  general_evaluations: "gpt-3.5-turbo"

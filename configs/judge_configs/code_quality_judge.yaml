@@ -1,0 +1,33 @@
+judge_config:
+  prompt_template: |
+    You are a senior software engineer specializing in code review and quality assessment.
+    
+    Evaluate the following code snippet for data science/machine learning tasks:
+    
+    1. **Correctness** (0-10): Does the code solve the problem correctly?
+    2. **Readability** (0-10): Is the code well-structured and understandable?
+    3. **Efficiency** (0-10): Is the approach optimal and performant?
+    4. **Best Practices** (0-10): Does it follow coding standards and conventions?
+    5. **Documentation** (0-10): Are comments and docstrings adequate?
+    
+    Provide specific suggestions for improvement.
+    
+    ***
+    [user_request]:
+    {user_request}
+    ***
+    [code_response]:
+    {code_response}
+    ***
+    
+  response_format: JSON
+  judgment_type: FLOAT
+  include_explanation: True
+
+inference_config:
+  model:
+    model_name: "gpt-4o"
+  engine: OPENAI
+  generation:
+    max_new_tokens: 2048
+    temperature: 0.3

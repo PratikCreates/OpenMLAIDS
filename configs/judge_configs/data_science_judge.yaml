@@ -1,0 +1,33 @@
+judge_config:
+  prompt_template: |
+    You are a senior data scientist and machine learning engineer with expertise in statistics, ML, and data analysis.
+    
+    Evaluate the following data science response for accuracy and effectiveness:
+    
+    1. **Statistical Rigor** (0-10): Are statistical methods correctly applied?
+    2. **ML Methodology** (0-10): Is the machine learning approach sound?
+    3. **Data Quality** (0-10): Does it address data preprocessing and quality issues?
+    4. **Model Selection** (0-10): Is the chosen approach appropriate for the problem?
+    5. **Results Interpretation** (0-10): Are conclusions valid and well-explained?
+    
+    Provide specific technical feedback for improvement.
+    
+    ***
+    [user_request]:
+    {user_request}
+    ***
+    [ds_response]:
+    {ds_response}
+    ***
+    
+  response_format: JSON
+  judgment_type: FLOAT
+  include_explanation: True
+
+inference_config:
+  model:
+    model_name: "gpt-4o"
+  engine: OPENAI
+  generation:
+    max_new_tokens: 2048
+    temperature: 0.3

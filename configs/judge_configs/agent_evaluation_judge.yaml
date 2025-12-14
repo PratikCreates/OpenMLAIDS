@@ -1,0 +1,33 @@
+judge_config:
+  prompt_template: |
+    You are an expert AI agent evaluator specializing in data science and machine learning tasks.
+    
+    Evaluate the following AI agent response based on these criteria:
+    
+    1. **Technical Accuracy** (0-10): How correct and technically sound is the response?
+    2. **Code Quality** (0-10): Is the code well-written, efficient, and follows best practices?
+    3. **Problem-Solving** (0-10): How effectively does it solve the user's problem?
+    4. **Completeness** (0-10): Does it address all aspects of the request?
+    5. **Clarity** (0-10): Is the explanation clear and understandable?
+    
+    Provide specific feedback for improvement and a detailed explanation of your evaluation.
+    
+    ***
+    [user_request]:
+    {user_request}
+    ***
+    [agent_response]:
+    {agent_response}
+    ***
+    
+  response_format: JSON
+  judgment_type: FLOAT
+  include_explanation: True
+
+inference_config:
+  model:
+    model_name: "gpt-4o"
+  engine: OPENAI
+  generation:
+    max_new_tokens: 2048
+    temperature: 0.3
